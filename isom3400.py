@@ -1,62 +1,33 @@
 import streamlit as st
-import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
 
-# -------------------------------
-# Title and Description
-# -------------------------------
-st.title("📊 Business Sales Dashboard")
-st.write("Analyze monthly sales data interactively!")
+# Set up the dashboard layout
+st.title("Retail Business Dashboard")
+st.header("Manager Input Section")
 
-# -------------------------------
-# Sample Data
-# -------------------------------
-months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-sales = np.random.randint(5000, 20000, size=12)
-expenses = np.random.randint(3000, 15000, size=12)
+# Q1: Enter monthly sales target
+sales_target = st.number_input(
+    "Enter Monthly Sales Target (in USD):", 
+    min_value=0, 
+    value=50000,
+    step=1000
+)
 
-data = pd.DataFrame({
-    "Month": months,
-    "Sales": sales,
-    "Expenses": expenses
-})
+# Q2: Select region
+region = st.selectbox(
+    "Select Region:",
+    ["North", "South", "East", "West"]
+)
 
-# -------------------------------
-# Sidebar Filters
-# -------------------------------
-st.sidebar.header("Filters")
-selected_months = st.sidebar.multiselect("Select Months", months, default=months)
-show_expenses = st.sidebar.checkbox("Show Expenses", value=True)
-
-# Filter data
-filtered_data = data[data["Month"].isin(selected_months)]
-
-# -------------------------------
-# Display Data Table
-# -------------------------------
-st.subheader("Filtered Data")
-st.dataframe(filtered_data)
-
-# -------------------------------
-# Interactive Chart
-# -------------------------------
-st.subheader("Sales Chart")
-fig, ax = plt.subplots()
-ax.plot(filtered_data["Month"], filtered_data["Sales"], marker='o', label="Sales")
-if show_expenses:
-    ax.plot(filtered_data["Month"], filtered_data["Expenses"], marker='o', label="Expenses")
-ax.set_title("Monthly Performance")
-ax.set_xlabel("Month")
-ax.set_ylabel("Amount ($)")
-ax.legend()
-st.pyplot(fig)
-
-# -------------------------------
-# KPI Metrics
-# -------------------------------
-st.subheader("Key Metrics")
-col1, col2, col3 = st.columns(3)
-col1.metric("Total Sales", f"${filtered_data['Sales'].sum():,.0f}")
-col2.metric("Total Expenses", f"${filtered_data['Expenses'].sum():,.0f}")
-col3.metric("Profit", f"${(filtered_data['Sales'].sum() - filtered_data['Expenses'].sum()):,.0f}")
+# Submit button
+if st.button("Submit"):
+    # Q4 & Q5: Display summary message and entered values
+    st.write("### Summary")
+    st.write(f"Sales Target: ${sales_target:,.2f}")
+    st.write(f"Selected Region: {region}")
+    
+    # Q6: Show success message
+    st.success("Dashboard updated successfully")
+    
+    # Challenge Extension: Extra logic for high targets
+    if sales_target > 100000:
+        st.write("Great! You have set an ambitious target!")
