@@ -12,8 +12,7 @@ if st.button("Submit"):
     st.write(f"The Monthly Sales Target is ${sales_target:,.2f}.")
     st.write(f"The Selected Region is {region}.")
 
-    st.success("Dashboard updated successfully")
-
     if sales_target > 100000:
         st.write("Great! You have set an ambitious target!")
 
+    st.success("Dashboard updated successfully")
