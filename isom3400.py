@@ -8,7 +8,7 @@ sales_target = st.number_input("Enter Monthly Sales Target (in USD):", min_value
 region = st.selectbox("Select Region:", ["North", "South", "East", "West"])
 
 if st.button("Submit"):
-    st.title("Summary")
+    st.header("Summary")
     st.write(f"The Monthly Sales Target is ${sales_target:,.2f}")
     st.write(f"The Selected Region is {region}")
 
