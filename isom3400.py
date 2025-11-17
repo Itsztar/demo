@@ -9,7 +9,7 @@ region = st.selectbox("Select Region:", ["North", "South", "East", "West"])
 
 if st.button("Submit"):
     st.write("Summary")
-    st.write("f"The Monthly Sales Target is {sales_target:,2f})
+    st.write("f"The Monthly Sales Target is {sales_target:,.2f})
     st.write(f"The Selected Region is {region})
 
     st.success("Dashboard updated successfully")
