@@ -1,4 +1,5 @@
 import streamlit as st
+import time as time
 
 # 1. Dashboard Title and Objective
 # TODO: Add title and description
@@ -48,6 +49,13 @@ with tab3:
 
 # 4. Expander
 # TODO: Add expander for additional info
+with st.expander("More Information"):
+    st.write("Data was collected through surveys, customer feedback forms, and official sales reports.")
+
+placeholder = st.empty()
+for i in range(5):
+    placeholder.write(f"Loading data... {i*20}% complete")
+    time.sleep(1)
 
 # 5. Interactivity
 # TODO: Add selectbox and slider for revenue adjustment
