@@ -31,7 +31,6 @@ with tab1:
     }
     for quarter, revenue in sales_data.items():
         st.write(f"{quarter}: {revenue}")
-        st.bar_chart({"Revenue (in M$)": [1.2, 1.5, 1.3, 1.6]}, height=200)
 
 with tab2:
     st.write("### Customer Insights")
@@ -40,11 +39,12 @@ with tab2:
         "Very satisfied with the product quality.",
         "Quick delivery and excellent support."
     ]
-    for feedback in customer_feedback:
-        st.write(f"- {feedback}")
+    for i, feedback in enumerate(customer_feedback, 1):
+        st.write(f"{i}. {feedback}")
 
 with tab3:
     st.write("### Market Trends")
+    st.bar_chart({"Revenue (in M$)": [1.2, 1.5, 1.3, 1.6]}, height=200)
 
 # 4. Expander
 # TODO: Add expander for additional info
